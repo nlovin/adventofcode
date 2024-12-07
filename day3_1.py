@@ -4,7 +4,6 @@ with open('data/day3.txt', 'r') as file:
     memory = file.read()
 
 
-# Regular expression to match mul(x,y) where x and y are numbers
 matches = re.findall(r'mul\((\d{1,3}),(\d{1,3})\)', memory)
 
 pairs = []
