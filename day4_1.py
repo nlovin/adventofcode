@@ -3,25 +3,25 @@ def find_xmas(grid):
     cols = len(grid[0]) # since it's a square, shouldn't matter. If it were a different shape then I'd have to rethink it
     
     directions = [
-        (1, 0),   # down
-        (-1, 0),  # up
-        (0, 1),   # right
-        (0, -1),  # left
+        (0, 1),   # down
+        (0, -1),  # up
+        (1, 0),   # right
+        (-1, 0),  # left
         (1, 1),   # down-right
-        (1, -1),  # down-left
-        (-1, 1),  # up-right
+        (-1, 1),  # down-left
+        (1, -1),  # up-right
         (-1, -1)  # up-left
     ]
     
     def is_valid(x, y):
-        return 0 <= x < rows and 0 <= y < cols
+        return 0 <= x < cols and 0 <= y < rows
     
     def search_pattern(start_x, start_y, dx, dy):
         pattern = "XMAS"
         x, y = start_x, start_y
         
         # Check if first letter matches
-        if grid[x][y] != pattern[0]:
+        if grid[y][x] != pattern[0]:
             return False
         
         # Continue searching next letters along path
@@ -30,7 +30,7 @@ def find_xmas(grid):
             y += dy
             
             # Check if still in grid and letter matches
-            if not is_valid(x, y) or grid[x][y] != letter:
+            if not is_valid(x, y) or grid[y][x] != letter:
                 return False
         
         return True
@@ -40,7 +40,7 @@ def find_xmas(grid):
     for x in range(rows):
         for y in range(cols):
             for dx, dy in directions:
-                if search_pattern(x, y, dx, dy):
+                if search_pattern(y, x, dx, dy):
                     count+=1
 
     return count
