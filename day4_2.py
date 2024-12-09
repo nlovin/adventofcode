@@ -1,3 +1,6 @@
+with open('data/day4.txt','r') as file:
+    grid = [list(line) for line in file]
+
 def is_valid(x, y):
     return 0 <= x < cols and 0 <= y < rows
 
